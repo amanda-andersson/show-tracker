@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { API_URL } from '../config'
 import type { Show } from '../types/Show'
 
 function ShowDetails() {
   const { id } = useParams()
+  const navigate = useNavigate()
+const [deleting, setDeleting] = useState(false)
   const [show, setShow] = useState<Show | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -30,6 +32,32 @@ function ShowDetails() {
     fetchShow()
   }, [id])
 
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this show?'
+    )
+
+    if (!confirmed) return
+
+    setDeleting(true)
+    setError('')
+
+    try {
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        throw new Error('Could not delete show')
+      }
+
+      navigate('/')
+    } catch {
+      setError('Could not delete show. Please try again.')
+      setDeleting(false)
+    }
+  }
+
   if (loading) return <p>Loading show...</p>
   if (error) return <p>{error}</p>
   if (!show) return <p>Show not found.</p>
@@ -38,7 +66,9 @@ function ShowDetails() {
     <div>
       <Link to="/">Back to Shows</Link>
 
-      <h1>{show.title}</h1> <Link to={`/shows/${show.id}/edit`}>Edit Show</Link>
+      <h1>{show.title}</h1> <Link to={`/shows/${show.id}/edit`}>Edit Show</Link> <button onClick={handleDelete} disabled={deleting}>
+  {deleting ? 'Deleting...' : 'Delete Show'}
+</button>
       <p>Genre: {show.category}</p>
       <p>Status: {show.status}</p>
       {show.subtitle && (
