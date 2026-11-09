@@ -38,9 +38,12 @@ function ShowDetails() {
     <div>
       <Link to="/">Back to Shows</Link>
 
-      <h1>{show.title}</h1>
+      <h1>{show.title}</h1> <Link to={`/shows/${show.id}/edit`}>Edit Show</Link>
       <p>Genre: {show.category}</p>
       <p>Status: {show.status}</p>
+      {show.subtitle && (
+  <p>Seasons Watched: {show.subtitle}</p>
+)}
     </div>
   )
 }
