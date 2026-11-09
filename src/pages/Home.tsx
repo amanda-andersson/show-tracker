@@ -16,9 +16,9 @@ function Home() {
 
   return (
     <div>
-      <h1>My Shows</h1>
+    
 
-      <div>
+      <div className="filter-container">
         <label htmlFor="filter">Filter by status: </label>
         <select
           id="filter"

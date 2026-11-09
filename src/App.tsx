@@ -12,9 +12,18 @@ function App() {
       <div className="tv">
         <div className="tv-screen">
           <nav>
-            <Link to="/">Show Tracker</Link>
-            <Link to="/add">Add Show</Link>
-          </nav>
+  <Link to="/" className="tv-logo">
+    PREVIOUSLY ON...
+  </Link>
+
+  <span className="nav-subtitle">
+    Your personal TV diary.
+  </span>
+
+  <Link to="/add" className="add-show-link">
+    + Add Show
+  </Link>
+</nav>
 
           <main>
             <Routes>
