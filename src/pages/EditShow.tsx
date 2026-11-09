@@ -12,6 +12,8 @@ function EditShow() {
   const [status, setStatus] = useState('Want to Watch')
   const [watchedSeasons, setWatchedSeasons] = useState(0)
   const [totalSeasons, setTotalSeasons] = useState(0)
+  const [rating, setRating] = useState(0)
+  const [notes, setNotes] = useState('')
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -30,6 +32,8 @@ function EditShow() {
         setTitle(data.title)
         setCategory(data.category ?? '')
         setStatus(data.status ?? 'Want to Watch')
+        setRating(data.rating ?? 0)
+        setNotes(data.notes ?? '')
 
         const [watched, total] = (data.subtitle ?? '0/0')
           .split('/')
@@ -69,6 +73,8 @@ function EditShow() {
           category,
           status,
           subtitle: `${watchedSeasons}/${totalSeasons}`,
+          rating,
+          notes,
         }),
       })
 
@@ -102,22 +108,22 @@ function EditShow() {
         </div>
 
         <div>
-  <label htmlFor="category">Genre</label>
-  <select
-    id="category"
-    value={category}
-    onChange={(e) => setCategory(e.target.value)}
-  >
-    <option value="Comedy">Comedy</option>
-    <option value="Drama">Drama</option>
-    <option value="Horror">Horror</option>
-    <option value="Reality">Reality</option>
-    <option value="Documentary">Documentary</option>
-    <option value="Mystery">Mystery</option>
-    <option value="Romance">Romance</option>
-    <option value="Other">Other</option>
-  </select>
-</div>
+          <label htmlFor="category">Genre</label>
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Reality">Reality</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Romance">Romance</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
         <div>
           <label htmlFor="status">Status</label>
@@ -153,6 +159,31 @@ function EditShow() {
             min="0"
             value={totalSeasons}
             onChange={(e) => setTotalSeasons(Number(e.target.value))}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="rating">Rating</label>
+          <select
+            id="rating"
+            value={rating}
+            onChange={(e) => setRating(Number(e.target.value))}
+          >
+            <option value={0}>Not rated</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="notes">Notes</label>
+          <textarea
+            id="notes"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
           />
         </div>
 
