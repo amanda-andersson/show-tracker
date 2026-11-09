@@ -1,0 +1,1 @@
+export const API_URL = 'https://shelf-api-mu.vercel.app/api/amanda-andersson/items'
