@@ -1,26 +1,49 @@
 import { Link } from 'react-router'
+import {
+  Smiley,
+  MaskHappy,
+  Ghost,
+  Crown,
+  FilmSlate,
+  MagnifyingGlass,
+  Heart,
+  Television,
+} from '@phosphor-icons/react'
 import type { Show } from '../types/Show'
-import { genreIcons } from '../genreIcons'
 
 interface ShowCardProps {
   show: Show
 }
 
+const genreIcons = {
+  Comedy: Smiley,
+  Drama: MaskHappy,
+  Horror: Ghost,
+  Reality: Crown,
+  Documentary: FilmSlate,
+  Mystery: MagnifyingGlass,
+  Romance: Heart,
+  Other: Television,
+}
+
 function ShowCard({ show }: ShowCardProps) {
+  const GenreIcon =
+    genreIcons[show.category as keyof typeof genreIcons] ?? Television
+
   return (
     <div className="show-card">
-      <div className="show-card-icon">
-        {genreIcons[show.category ?? 'Other'] ?? '📺'}
-      </div>
+    <div className={`show-card-icon genre-${(show.category ?? 'Other').toLowerCase()}`}>
+  <GenreIcon size={48} weight="bold" />
+</div>
 
       <div className="show-card-content">
         <h2>
-          <Link to={`/shows/${show.id}`}>
-            {show.title}
-          </Link>
+          <Link to={`/shows/${show.id}`}>{show.title}</Link>
         </h2>
 
-        <p className="show-status">{show.status}</p>
+        <p className={`show-status status-${(show.status ?? '').toLowerCase().replaceAll(' ', '-')}`}>
+  {show.status}
+</p>
 
         {show.subtitle && (
           <p>Seasons Watched: {show.subtitle}</p>

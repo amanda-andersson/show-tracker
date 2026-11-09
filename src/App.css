@@ -160,6 +160,7 @@ button:disabled {
   border: 3px solid #222;
   border-radius: 10px;
   font-size: 55px;
+  color: #222;
 }
 
 .show-card-content h2 {
@@ -227,4 +228,60 @@ button:disabled {
   .show-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Genre colors */
+
+.genre-comedy {
+  background-color: #f2c66d;
+}
+
+.genre-drama {
+  background-color: #c5a3d9;
+}
+
+.genre-horror {
+  background-color: #9eaf9a;
+}
+
+.genre-reality {
+  background-color: #e8a0a0;
+}
+
+.genre-documentary {
+  background-color: #9abed0;
+}
+
+.genre-mystery {
+  background-color: #b5b0d9;
+}
+
+.genre-romance {
+  background-color: #e9a9bd;
+}
+
+.genre-other {
+  background-color: #e7a45b;
+}
+
+/* Status colors */
+
+.status-want-to-watch {
+  background-color: #f2c66d;
+}
+
+.status-watching {
+  background-color: #c5a3d9;
+}
+
+.status-up-to-date {
+  background-color: #9abed0;
+}
+
+.status-completed {
+  background-color: #b5c99a;
+}
+
+.status-dropped {
+  background-color: #e8a0a0;
 }
