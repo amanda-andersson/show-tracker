@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { API_URL } from '../config'
 import type { Show } from '../types/Show'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 import { Link } from 'react-router'
 
 function Home() {
   const [shows, setShows] = useState<Show[]>([]) 
-  const [filter, setFilter] = useState('All')
+  const [filter, setFilter] = useLocalStorage('showFilter', 'All')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
