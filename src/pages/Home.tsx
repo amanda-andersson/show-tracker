@@ -1,7 +1,7 @@
-import { Link } from 'react-router'
+
 import { useShows } from '../hooks/useShows'
 import { useLocalStorage } from '../hooks/useLocalStorage'
-import { genreIcons } from '../genreIcons'
+import ShowCard from '../components/ShowCard'
 
 function Home() {
   const { shows, loading, error } = useShows()
@@ -38,28 +38,9 @@ function Home() {
       {filteredShows.length === 0 ? (
         <p>No shows added yet.</p>
       ) : (
-        filteredShows.map((show) => (
-          <div key={show.id}>
-            <h2>
-              <Link to={`/shows/${show.id}`}>
-                {genreIcons[show.category ?? 'Other'] ?? '📺'} {show.title}
-              </Link>
-            </h2>
-
-            <p>{show.status}</p>
-
-            {show.subtitle && (
-  <p>Seasons Watched: {show.subtitle}</p>
-)}
-
-            {show.rating != null && show.rating > 0 && (
-              <p>
-  {'★'.repeat(show.rating)}
-  {'☆'.repeat(5 - show.rating)}
-</p>
-            )}
-          </div>
-        ))
+      filteredShows.map((show) => (
+  <ShowCard key={show.id} show={show} />
+))
       )}
     </div>
   )
