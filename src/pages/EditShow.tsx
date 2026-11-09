@@ -102,13 +102,22 @@ function EditShow() {
         </div>
 
         <div>
-          <label htmlFor="category">Genre</label>
-          <input
-            id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        </div>
+  <label htmlFor="category">Genre</label>
+  <select
+    id="category"
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+  >
+    <option value="Comedy">Comedy</option>
+    <option value="Drama">Drama</option>
+    <option value="Horror">Horror</option>
+    <option value="Reality">Reality</option>
+    <option value="Documentary">Documentary</option>
+    <option value="Mystery">Mystery</option>
+    <option value="Romance">Romance</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
 
         <div>
           <label htmlFor="status">Status</label>

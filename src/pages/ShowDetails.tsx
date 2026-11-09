@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { API_URL } from '../config'
 import type { Show } from '../types/Show'
+import { genreIcons } from '../genreIcons'
 
 function ShowDetails() {
   const { id } = useParams()
@@ -66,7 +67,10 @@ const [deleting, setDeleting] = useState(false)
     <div>
       <Link to="/">Back to Shows</Link>
 
-      <h1>{show.title}</h1> <Link to={`/shows/${show.id}/edit`}>Edit Show</Link> <button onClick={handleDelete} disabled={deleting}>
+      <h1>
+  {genreIcons[show.category ?? 'Other'] ?? '📺'} {show.title}
+</h1>
+      <Link to={`/shows/${show.id}/edit`}>Edit Show</Link> <button onClick={handleDelete} disabled={deleting}>
   {deleting ? 'Deleting...' : 'Delete Show'}
 </button>
       <p>Genre: {show.category}</p>
