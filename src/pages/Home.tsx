@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { API_URL } from '../config'
 import type { Show } from '../types/Show'
+import { Link } from 'react-router'
 
 function Home() {
   const [shows, setShows] = useState<Show[]>([])
@@ -38,12 +39,14 @@ function Home() {
       {shows.length === 0 ? (
         <p>No shows added yet.</p>
       ) : (
-        shows.map((show) => (
-          <div key={show.id}>
-            <h2>{show.title}</h2>
-            <p>{show.status}</p>
-          </div>
-        ))
+     shows.map((show) => (
+  <div key={show.id}>
+    <h2>
+      <Link to={`/shows/${show.id}`}>{show.title}</Link>
+    </h2>
+    <p>{show.status}</p>
+  </div>
+))
       )}
     </div>
   )
