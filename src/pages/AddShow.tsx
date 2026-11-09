@@ -6,6 +6,8 @@ function AddShow() {
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [status, setStatus] = useState('Want to Watch')
+const [watchedSeasons, setWatchedSeasons] = useState(0)
+const [totalSeasons, setTotalSeasons] = useState(0)
 
   const navigate = useNavigate()
 const [error, setError] = useState('')
@@ -13,6 +15,10 @@ const [loading, setLoading] = useState(false)
 
 async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
   e.preventDefault()
+  if (watchedSeasons > totalSeasons) {
+  setError('Watched seasons cannot exceed total seasons.')
+  return
+}
   setLoading(true)
   setError('')
 
@@ -22,11 +28,12 @@ async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        title,
-        category,
-        status,
-      }),
+     body: JSON.stringify({
+  title,
+  category,
+  status,
+  subtitle: `${watchedSeasons}/${totalSeasons}`,
+}),
     })
 
     if (!response.ok) {
@@ -81,6 +88,29 @@ async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
             <option value="Dropped">Dropped</option>
           </select>
         </div>
+
+
+<div>
+  <label htmlFor="watchedSeasons">Seasons Watched</label>
+  <input
+    id="watchedSeasons"
+    type="number"
+    min="0"
+    value={watchedSeasons}
+    onChange={(e) => setWatchedSeasons(Number(e.target.value))}
+  />
+</div>
+
+<div>
+  <label htmlFor="totalSeasons">Total Seasons</label>
+  <input
+    id="totalSeasons"
+    type="number"
+    min="0"
+    value={totalSeasons}
+    onChange={(e) => setTotalSeasons(Number(e.target.value))}
+  />
+</div>
 
 {error && <p>{error}</p>}
         <button type="submit" disabled={loading}>
