@@ -1,4 +1,3 @@
-
 import { useShows } from '../hooks/useShows'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import ShowCard from '../components/ShowCard'
@@ -38,9 +37,11 @@ function Home() {
       {filteredShows.length === 0 ? (
         <p>No shows added yet.</p>
       ) : (
-      filteredShows.map((show) => (
-  <ShowCard key={show.id} show={show} />
-))
+        <div className="show-grid">
+          {filteredShows.map((show) => (
+            <ShowCard key={show.id} show={show} />
+          ))}
+        </div>
       )}
     </div>
   )

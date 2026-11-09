@@ -9,20 +9,30 @@ import NotFound from './pages/NotFound'
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Show Tracker</Link>
-        <Link to="/add">Add Show</Link>
-      </nav>
+      <div className="tv">
+        <div className="tv-screen">
+          <nav>
+            <Link to="/">Show Tracker</Link>
+            <Link to="/add">Add Show</Link>
+          </nav>
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/add" element={<AddShow />} />
-          <Route path="/shows/:id" element={<ShowDetails />} />
-          <Route path="/shows/:id/edit" element={<EditShow />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/add" element={<AddShow />} />
+              <Route path="/shows/:id" element={<ShowDetails />} />
+              <Route path="/shows/:id/edit" element={<EditShow />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+        </div>
+
+        <div className="tv-controls">
+          <div className="tv-knob"></div>
+          <div className="tv-knob"></div>
+          <div className="tv-speaker"></div>
+        </div>
+      </div>
     </BrowserRouter>
   )
 }

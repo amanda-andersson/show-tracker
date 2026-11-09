@@ -8,25 +8,31 @@ interface ShowCardProps {
 
 function ShowCard({ show }: ShowCardProps) {
   return (
-    <div>
-      <h2>
-        <Link to={`/shows/${show.id}`}>
-          {genreIcons[show.category ?? 'Other'] ?? '📺'} {show.title}
-        </Link>
-      </h2>
+    <div className="show-card">
+      <div className="show-card-icon">
+        {genreIcons[show.category ?? 'Other'] ?? '📺'}
+      </div>
 
-      <p>{show.status}</p>
+      <div className="show-card-content">
+        <h2>
+          <Link to={`/shows/${show.id}`}>
+            {show.title}
+          </Link>
+        </h2>
 
-      {show.subtitle && (
-        <p>Seasons Watched: {show.subtitle}</p>
-      )}
+        <p className="show-status">{show.status}</p>
 
-      {show.rating != null && show.rating > 0 && (
-        <p>
-          {'★'.repeat(show.rating)}
-          {'☆'.repeat(5 - show.rating)}
-        </p>
-      )}
+        {show.subtitle && (
+          <p>Seasons Watched: {show.subtitle}</p>
+        )}
+
+        {show.rating != null && show.rating > 0 && (
+          <p className="show-rating">
+            {'★'.repeat(show.rating)}
+            {'☆'.repeat(5 - show.rating)}
+          </p>
+        )}
+      </div>
     </div>
   )
 }
