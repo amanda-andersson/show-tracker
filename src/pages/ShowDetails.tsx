@@ -73,11 +73,28 @@ const [deleting, setDeleting] = useState(false)
       <Link to={`/shows/${show.id}/edit`}>Edit Show</Link> <button onClick={handleDelete} disabled={deleting}>
   {deleting ? 'Deleting...' : 'Delete Show'}
 </button>
-      <p>Genre: {show.category}</p>
-      <p>Status: {show.status}</p>
-      {show.subtitle && (
-  <p>Seasons Watched: {show.subtitle}</p>
-)}
+      <div className="show-details-info">
+  <p><strong>Genre:</strong> {show.category}</p>
+  <p><strong>Status:</strong> {show.status}</p>
+
+  {show.subtitle && (
+    <p><strong>Seasons Watched:</strong> {show.subtitle}</p>
+  )}
+
+  {show.rating != null && show.rating > 0 && (
+    <p className="show-rating">
+      {'★'.repeat(show.rating)}
+      {'☆'.repeat(5 - show.rating)}
+    </p>
+  )}
+
+  {show.notes && (
+    <div className="show-notes">
+      <h2>Notes</h2>
+      <p>{show.notes}</p>
+    </div>
+  )}
+</div>
     </div>
   )
 }

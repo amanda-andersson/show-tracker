@@ -32,14 +32,14 @@ function AddShow() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          title,
-          category,
-          status,
-          subtitle: `${watchedSeasons}/${totalSeasons}`,
-          rating,
-          notes,
-        }),
+       body: JSON.stringify({
+  title,
+  category,
+  status,
+  subtitle: `${watchedSeasons}/${totalSeasons}`,
+  ...(rating > 0 && { rating }),
+  notes,
+}),
       })
 
       if (!response.ok) {

@@ -17,7 +17,7 @@ function App() {
   </Link>
 
   <span className="nav-subtitle">
-    Your personal TV diary.
+    Your personal TV diary
   </span>
 
   <Link to="/add" className="add-show-link">
