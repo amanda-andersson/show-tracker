@@ -73,7 +73,7 @@ function EditShow() {
           category,
           status,
           subtitle: `${watchedSeasons}/${totalSeasons}`,
-          rating,
+          ...(rating > 0 && { rating }),
           notes,
         }),
       })
@@ -94,13 +94,14 @@ function EditShow() {
 
   return (
     <div>
-      <h1>Edit Show</h1>
+      <form className="show-form" onSubmit={handleSubmit}>
+        <h1 className="show-form-title">Edit Show</h1>
 
-      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label>
           <input
             id="title"
+            type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -140,30 +141,32 @@ function EditShow() {
           </select>
         </div>
 
-        <div>
-          <label htmlFor="watchedSeasons">Seasons Watched</label>
-          <input
-            id="watchedSeasons"
-            type="number"
-            min="0"
-            value={watchedSeasons}
-            onChange={(e) => setWatchedSeasons(Number(e.target.value))}
-          />
+        <div className="seasons-row">
+          <div>
+            <label htmlFor="watchedSeasons">Seasons Watched</label>
+            <input
+              id="watchedSeasons"
+              type="number"
+              min="0"
+              value={watchedSeasons}
+              onChange={(e) => setWatchedSeasons(Number(e.target.value))}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="totalSeasons">Total Seasons</label>
+            <input
+              id="totalSeasons"
+              type="number"
+              min="0"
+              value={totalSeasons}
+              onChange={(e) => setTotalSeasons(Number(e.target.value))}
+            />
+          </div>
         </div>
 
         <div>
-          <label htmlFor="totalSeasons">Total Seasons</label>
-          <input
-            id="totalSeasons"
-            type="number"
-            min="0"
-            value={totalSeasons}
-            onChange={(e) => setTotalSeasons(Number(e.target.value))}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="rating">Rating</label>
+          <label htmlFor="rating">Rating (1–5)</label>
           <select
             id="rating"
             value={rating}
