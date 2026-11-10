@@ -7,7 +7,8 @@ import { genreIcons } from '../genreIcons'
 function ShowDetails() {
   const { id } = useParams()
   const navigate = useNavigate()
-const [deleting, setDeleting] = useState(false)
+
+  const [deleting, setDeleting] = useState(false)
   const [show, setShow] = useState<Show | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -60,41 +61,64 @@ const [deleting, setDeleting] = useState(false)
   }
 
   if (loading) return <p>Loading show...</p>
-  if (error) return <p>{error}</p>
-  if (!show) return <p>Show not found.</p>
+  if (!show) return <p>{error || 'Show not found.'}</p>
 
   return (
-    <div>
-      <Link to="/">Back to Shows</Link>
+    <div className="show-details-page">
+      <Link to="/" className="back-link">
+        ← Back to Shows
+      </Link>
 
-      <h1>
-  {genreIcons[show.category ?? 'Other'] ?? '📺'} {show.title}
-</h1>
-      <Link to={`/shows/${show.id}/edit`}>Edit Show</Link> <button onClick={handleDelete} disabled={deleting}>
-  {deleting ? 'Deleting...' : 'Delete Show'}
-</button>
       <div className="show-details-info">
-  <p><strong>Genre:</strong> {show.category}</p>
-  <p><strong>Status:</strong> {show.status}</p>
+        <h1 className="show-form-title">
+          {genreIcons[show.category ?? 'Other'] ?? '📺'} {show.title}
+        </h1>
 
-  {show.subtitle && (
-    <p><strong>Seasons Watched:</strong> {show.subtitle}</p>
-  )}
+        <p>
+          <strong>Genre:</strong> {show.category}
+        </p>
 
-  {show.rating != null && show.rating > 0 && (
-    <p className="show-rating">
-      {'★'.repeat(show.rating)}
-      {'☆'.repeat(5 - show.rating)}
-    </p>
-  )}
+        <p>
+          <strong>Status:</strong> {show.status}
+        </p>
 
-  {show.notes && (
-    <div className="show-notes">
-      <h2>Notes</h2>
-      <p>{show.notes}</p>
-    </div>
-  )}
-</div>
+        {show.subtitle && (
+          <p>
+            <strong>Seasons Watched:</strong> {show.subtitle}
+          </p>
+        )}
+
+        {show.rating != null && show.rating > 0 && (
+          <p className="show-rating">
+            {'★'.repeat(show.rating)}
+            {'☆'.repeat(5 - show.rating)}
+          </p>
+        )}
+
+        {show.notes && (
+          <div className="show-notes">
+            <h2>Notes</h2>
+            <p>{show.notes}</p>
+          </div>
+        )}
+
+        {error && <p>{error}</p>}
+
+        <div className="show-details-actions">
+          <Link to={`/shows/${show.id}/edit`} className="details-button">
+            Edit Show
+          </Link>
+
+          <button
+            type="button"
+            className="details-button delete-button"
+            onClick={handleDelete}
+            disabled={deleting}
+          >
+            {deleting ? 'Deleting...' : 'Delete Show'}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
