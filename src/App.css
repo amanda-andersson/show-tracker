@@ -550,3 +550,99 @@ button:disabled {
     margin: 25px 16px;
   }
 }
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+  .tv {
+    height: 100vh;
+    padding: 12px;
+    border-width: 6px;
+    border-radius: 25px;
+  }
+
+  .tv-controls {
+    display: none;
+  }
+
+  .tv-screen {
+    border-width: 4px;
+    border-radius: 18px;
+  }
+
+  nav {
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .tv-logo {
+    font-size: 23px;
+  }
+
+  .nav-subtitle {
+    font-size: 11px;
+    letter-spacing: 1px;
+    white-space: normal;
+  }
+
+  .add-show-link {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  main {
+    padding: 20px 15px;
+  }
+
+  .show-card {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .show-card-icon,
+  .show-grid .show-card-icon {
+    width: 55px;
+    height: 70px;
+    font-size: 32px;
+  }
+
+  .show-card-content h2 {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+  }
+
+  .show-card-content {
+    min-width: 0;
+  }
+
+  .show-rating {
+    font-size: 18px;
+  }
+
+  .filter-container {
+    flex-wrap: wrap;
+  }
+
+  .show-form {
+    padding: 20px;
+  }
+
+  .show-details-page {
+    margin: 20px 0;
+  }
+}
+
+/* TV sticker */
+
+.tv-sticker {
+  width: 145px;
+  height: auto;
+  margin-top: 50px;
+  transform: translateX(10px) rotate(-5deg);
+}
+
+@media (max-width: 600px) {
+  .tv-sticker {
+    display: none;
+  }
+}

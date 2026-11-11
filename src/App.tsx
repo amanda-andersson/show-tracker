@@ -3,8 +3,8 @@ import Home from './pages/Home'
 import AddShow from './pages/AddShow'
 import ShowDetails from './pages/ShowDetails'
 import EditShow from './pages/EditShow'
-import './App.css'
 import NotFound from './pages/NotFound'
+import './App.css'
 
 function App() {
   return (
@@ -12,18 +12,18 @@ function App() {
       <div className="tv">
         <div className="tv-screen">
           <nav>
-  <Link to="/" className="tv-logo">
-    PREVIOUSLY ON...
-  </Link>
+            <Link to="/" className="tv-logo">
+              PREVIOUSLY ON...
+            </Link>
 
-  <span className="nav-subtitle">
-    Your personal TV diary
-  </span>
+            <span className="nav-subtitle">
+              Your personal TV diary
+            </span>
 
-  <Link to="/add" className="add-show-link">
-    + Add Show
-  </Link>
-</nav>
+            <Link to="/add" className="add-show-link">
+              + Add Show
+            </Link>
+          </nav>
 
           <main>
             <Routes>
@@ -40,6 +40,12 @@ function App() {
           <div className="tv-knob"></div>
           <div className="tv-knob"></div>
           <div className="tv-speaker"></div>
+
+          <img
+            src="/tv.png"
+            alt="I love TV sticker"
+            className="tv-sticker"
+          />
         </div>
       </div>
     </BrowserRouter>
