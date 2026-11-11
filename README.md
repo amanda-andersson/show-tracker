@@ -1,75 +1,78 @@
-# React + TypeScript + Vite
+# Previously On...
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Previously On... is a personal TV show diary where you can keep track of shows you want to watch, are currently watching, gave up on or have already finished.
 
-Currently, two official plugins are available:
+I built this project with React and TypeScript as part of my Frontend Developer education at Medieinstitutet.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Add, edit and delete TV shows
+- View details about each show
+- Filter shows by watching status
+- Rate shows from 1 to 5 stars
+- Keep track of watched seasons
+- Add notes about shows
+- Save the selected status filter when refreshing the page
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Built with
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Vite
+- React Router
+- CSS
+- Shelf API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+To run the project locally:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Clone the repository:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+   ```bash
+   git clone https://github.com/amanda-andersson/show-tracker.git
+   ```
 
-```
+2. Open the project folder:
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+   ```bash
+   cd show-tracker
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. Install dependencies:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+   ```bash
+   npm install
+   ```
 
-```
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+## Custom Hooks
+
+I use two custom hooks in this project:
+
+- **useShows** – Fetches TV shows from the API and handles loading and errors.
+- **useLocalStorage** – Saves the selected status filter so it stays the same after refreshing the page.
+
+I used these hooks to keep some of the logic separate from the components and make the code easier to follow.
+
+## Reflection
+
+I also tried moving the fetch logic for adding, editing and deleting shows into custom hooks, but ran into problems getting everything to work correctly. I decided to go back to the previous solution because it worked reliably.
+
+## Links
+
+- **GitHub:** https://github.com/amanda-andersson/show-tracker
+- **Live Demo:** https://show-tracker-wheat.vercel.app/
+
+## Author
+
+Amanda Andersson (@amanda-andersson)
+
+## Grade
+
+Aiming for **VG**, although not all fetch logic is handled by custom hooks.
